@@ -17,11 +17,11 @@ write_files:
   permissions: '0755'
   content: |
      #!/bin/bash
-     git clone https://github.com/krishnamaram2/configuration-manager.git
+     git clone git clone https://github.com/cloudstones/linux-ansible.git
 
-     cd configuration-manager/src/devstack/plays
+     cd linux-ansible/src/plays
 
-     ansible-playbook -i hosts devstack.yml
+     ansible-playbook -i hosts opsstack.yml
 
 
 runcmd:
