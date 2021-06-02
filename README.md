@@ -8,25 +8,7 @@ Execution Flow
 
 $git clone https://github.com/cloudstones/linux-terraform.git
 
-cd linux-terraform/src
-
-
-$vi config.json
-
-{
-
-"myregion" : "us-east-1",
-
-"myaccesskey" : "",
-
-"mysecretkey" : "",
-
-"myamiid" : ""
-
-}
-
-
-Step 4:
+$cd linux-terraform/src
 
 $terraform init .
 
