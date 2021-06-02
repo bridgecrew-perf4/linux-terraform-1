@@ -26,10 +26,42 @@ Name = "webserver"
 }
 }
 
+################################################  web server #########################
+resource "aws_instance" "appserver" {
+ami = "${var.myamiid}"
+instance_type = "t2.medium"
+subnet_id = "${aws_subnet.publicsubnet.id}"
+private_ip = "192.168.1.7"
+vpc_security_group_ids = ["${aws_security_group.websg.id}"]
+key_name = "${var.mykeypair}"
+user_data = "${data.template_file.webserver-userdata.rendered}"
+tags = {
+Name = "appserver"
+}
+}
+################################################  web server #########################
+resource "aws_instance" "dbserver" {
+ami = "${var.myamiid}"
+instance_type = "t2.medium"
+subnet_id = "${aws_subnet.publicsubnet.id}"
+private_ip = "192.168.1.8"
+vpc_security_group_ids = ["${aws_security_group.websg.id}"]
+key_name = "${var.mykeypair}"
+user_data = "${data.template_file.webserver-userdata.rendered}"
+tags = {
+Name = "dbserver"
+}
+}
 
 ############################################ Networking modules ######################
 resource "aws_eip" "webeip"{
 instance = "${aws_instance.webserver.id}"
+}
+resource "aws_eip" "appeip"{
+instance = "${aws_instance.appserver.id}"
+}
+resource "aws_eip" "dbeip"{
+instance = "${aws_instance.dbserver.id}"
 }
 
 resource "aws_vpc" "myvpc"{
