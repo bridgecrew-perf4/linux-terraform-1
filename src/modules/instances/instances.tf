@@ -26,7 +26,7 @@ Name = "webserver"
 }
 }
 
-################################################  web server #########################
+################################################  app server #########################
 resource "aws_instance" "appserver" {
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
@@ -39,7 +39,7 @@ tags = {
 Name = "appserver"
 }
 }
-################################################  web server #########################
+################################################  db server #########################
 resource "aws_instance" "dbserver" {
 ami = "${var.myamiid}"
 instance_type = "t2.medium"
